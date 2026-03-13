@@ -1,4 +1,4 @@
-# GAMA web: Galician Metrical Analyzer
+# GAMA · Galician Metrical Analyzer · Web
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17187974.svg)](https://doi.org/10.5281/zenodo.17187974)
 
