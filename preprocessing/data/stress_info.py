@@ -3,8 +3,8 @@
 atonas_gl = [
     # determinantes
     'o', 'a', 'os', 'as', 'do', 'da', 'dó', 'dás', 'dos', 'das',
-    'co', 'ca', 'cos', 'coa', 'coas', 'cas', 'cá', 'cós', 'cás',
-    'no', 'na', 'nos', 'nas', 'nó', 'ná', 'ńas',
+    'co', 'ca', 'cos', 'coa', 'coas', 'cas', 'cá', 'có', 'cós', 'cás',
+    'no', 'na', 'nos', 'nas', 'nás', 'nó', 'ná', 'ńas',
     'po', 'pol', 'pó',
     'polo', 'pola', 'polos', 'polas',
     'pólo', 'póla', 'pólos', 'pólas',
@@ -14,10 +14,11 @@ atonas_gl = [
     'póio', 'póia', 'póios', 'póias',
     'pos',
     'lo', 'la', 'los', 'las',
+    'cada',
     # pronombres átonos
     'me', 'te', 'che', 'se', 'lle', 'lles', 'lhes', 'nos', 'vos', 'vó', "vó lo",
     'mo', 'ma', 'mos', 'mas', 'cho', 'cha', 'chos', 'chas',
-    'cho', 'cha', 'chos', 'chas',
+    'cho', 'cha', 'chos', 'chas', 'ché',
     'llo', 'lle', 'lles',
     'á', 'ás', 'â', 'âs',
     # preposiciones (used ## in some cases to avoid matching)
@@ -29,19 +30,22 @@ atonas_gl = [
     'mediante', 'para', 'pra', 'por', '##segundo',
     'sen', 'sin', '##senón', 'sobre', 'tras', 'xunta', 'onda',
     # contracciones
-    'ò', 'ó', 'ao', 'ô',
+    'ò', 'ó', 'ao', 'ô', 'ós', 'aos', 'à', 'às', 'ás',
     # títulos
     "don", "dona", "fray", "sor", "san", "santa",
     # conjunciones
-    "coma", "anque",
+    "coma", "anque", "aunque",
     "que", "como", "e", "logo", "mentres", 'mentras', "nin",
-    "onde", "ou", "pero", "porque", "que", "se", "si", "cando", "y",
+    "onde", "ou", "pero", "porque", "que", "se", "si", "cando", "y", 'i',
+    "pois",
     # posesivos (if preceded by a determiner, they are stressed, but this is handled in preprocessing)
     "meu", "meus", "miña", "miñas",
     "teu", "teus",
-    "seu", "seus",
+    "seu", "seus", "su",
     "noso", "nosa", "nosos", "nosas",
-    "voso", "vosa", "vosos", "vosas"
+    "voso", "vosa", "vosos", "vosas",
+    # adverbios
+    'tan'
 ]
 
 # Metrically relevant cases where GL orthography uses a stress mark "diacritically"

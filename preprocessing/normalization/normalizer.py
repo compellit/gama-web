@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import copy
+import gzip
 import logging
 import pickle
 import re

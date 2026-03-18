@@ -143,7 +143,7 @@ def analysis_run(request):
         text = ut._preprocess_poem_text(text)
         if not text:
             return redirect("gama:error", errtype="empty")
-        if len(text) > 4500:
+        if len(text) > 10000000004500:
             return redirect("gama:error", errtype="too_long")
         if any(len(line.strip()) > 200 for line in text.splitlines() if line.strip()):
             return redirect("gama:error", errtype="not_verse")
@@ -179,7 +179,7 @@ def analysis_run(request):
         try:
             subprocess.run(
                 ["python", "../preprocessing/g2s_client_running_text.py",
-                 str(out_dir / "input.txt"), "-p", "-d", "-n", "-s", "-b", "001"],
+                 str(out_dir / "input.txt"), "-p", "-d", "-n", "-s", "-b", "001", "-m"],
                 check=True,
                 cwd=settings.PREPRO_DIR,
             )
@@ -451,7 +451,7 @@ def analysis_bulk(request):
             # Vérification du nombre de fichiers
             if not txt_files:
                 return JsonResponse({"error": _("No TXT files found in the ZIP.")}, status=400)
-            if len(txt_files) > 10:
+            if len(txt_files) > 1000000000:
                 return JsonResponse({"error": _("Too many files in ZIP. Maximum allowed is 10.")}, status=400)
             result_paths = []
             errors = []
@@ -487,7 +487,7 @@ def analysis_bulk(request):
                     # Prétraitement
                     subprocess.run(
                         ["python", "../preprocessing/g2s_client_running_text.py",
-                        str(input_txt), "-p", "-d", "-n", "-s", "-b", "001"],
+                        str(input_txt), "-p", "-d", "-n", "-s", "-b", "001", "-m"],
                         check=True,
                         cwd=settings.PREPRO_DIR,
                     )

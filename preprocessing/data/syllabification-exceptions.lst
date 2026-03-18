@@ -1,0 +1,148 @@
+# Based on Sanz Lázaro for Spanish: https://github.com/fsanzl/silabeador/blob/main/silabeador/exceptions.lst
+###### -uir verbs
+# Infinitive forms
+#([^fqgck]|\b)ui([ɾr])\b	\1u_i\2 # stressed í in GL
+#([^fqgck]|\b)uid([oa]s{,1})\b \1u_id\2 # stressed í in GL
+# Presente
+#([^fqg]|\b)ui(mos|s)\b \1u_i\2 # stressed í in GL
+# Indefinido
+#([^fqg]|\b)u(i|iste|isteis)\b \1u_\2 # not same ending in GL
+# Futuro ! # not productive and for poetry i think it's fine to leave it as diphthong (gonna be syneresis i bet most of the time)
+# ([^qg]|\b)ui([rɾ])(é|ás|á|emos|éis|an)\b \1u_i\2\3 
+# Condicional ! # diphthong in GL (iamos) or not same endings
+#([^qg]|\b)ui([rɾ])í(a|as|amos|ais|an)\b u_\1i\2í\3
+##### Verbos en -uar
+# Infinitives
+# recuar etc., variation but looks useful enough
+# I see no need to restrict preceding char to [^gkc] as in ES by fsanzl
+(.)ua([ɾr])\b \1u_a\2
+(.)uad((?:[oa]s*)*)\b \1u_ad\2
+(.{2,})uand((?:[oa]s*)*)\b \1u_and\2
+(.{2,})uant((?:[ea]s*)*)\b \1u_ant\2
+# Presente
+uamos\b u_amos
+uades\b u_ades
+#([^gkc])uáis\b u_áis
+# Imperfecto
+(.)uab(a|as|ades|an)\b \1u_ab\2
+(.)uabamos\b \1u_abamos
+# Indefinido
+([^qg])u(ei|aches|ou|astes|aron|aɾon)\b \1u_\2
+# Futuro !
+(.)ua([rɾ])(ei|ás|á|emos|edes|án)\b \1u_a\2\3
+# Condicional !
+(.)ua([rɾ])í(a|as|an)\b \1u_a\2í\3
+(.)ua([rɾ])i(amos|ades)\b \1u_a\2i\3
+# Subjuntivo, presente
+([^gkc])uemos\b \1u_emos
+# Imperfecto subjuntivo
+(.)uas(e|es|en)\b \1u_as\2
+(.)uás(emos|edes)\b \1u_ás\2
+# Futuro subjuntivo --> startslike infinitive
+(.)ua([rɾ])(es|mos|des|en)\b \1u_a\2\3
+# -iar
+# Infinitives
+(\b.{1,2}|.*f)ia([ɾr])\b \1i_a\2
+(\b.{1,2}|.*f)iad((?:[oa]s*)*)\b \1i_ad\2
+(\b.{1,2}|.*f)iand((?:[oa]s*)*)\b \1i_and\2
+(\b.{1,2}|.*f)iant((?:[ea]s*)*)\b \1i_ant\2
+# Presente
+#(\b.{1,2}|.*f)iamos\b \1i_amos #  not GL
+#(\b.{1,2}|.*f)iades\b \1i_des # not GL
+# Imperfecto
+(\b.{1,2}|.*f)iab(a|as|ais|an)\b \1i_ab\2
+#(\b.{1,2}|.*f)iábamos\b \1i_ábamos #  not GL
+# Indefinido
+(\b.{1,2}|.*f)i(ei|aches|ou|astes|aron|aɾon)\b \1i_\2
+# Futur !
+(\b.{1,2}|.*f)ia([rɾ])(ei|ás|á|emos|edes|an)\b \1i_a\2\3
+# Condicional !
+(\b.{1,2}|.*f)ia([rɾ])í(a|as|an)\b \1i_a\2í\3
+(\b.{1,2}|.*f)ia([rɾ])i(amos|ades)\b \1i_a\2i\3
+# Subjuntivo, presente
+(\b.{1,2}|.*f)iemos\b i\1_emos
+# Imperfecto subjuntivo
+(\b.{1,2}|.*f)ias(e|es|en)\b \1i_es\2
+(\b.{1,2}|.*f)iás(emos|edes)\b \1i_á\2
+(en|des)([bv])ia \1\2i_a
+([kc]on|desa)fia \1fi_a
+# Futuro subjuntivo
+(\b.{1,2}|.*f)ia([rɾ])(e|es|en|mos|des)\b \1i_a\2\3
+#a(r{1,2})ie([ɾr]) a\1i_e\2
+@a([kc])uos a_\1uos
+#a([kc])u([ií]) a\1u_\2
+([iu])ángulo \1_ángulo
+([iu])anual \1_anu_al
+#a(r{1,2})ie([ɾr]) a\1i_e\2
+bienio bi_enio
+biombo bi_ombo
+bo(qu|k)ian(ch|ʧ) bo\1ian\2
+\bb([ɾr])io b\1i_o
+([kc])lient \1li_ent
+#ian([zθ])a i_an\1a
+(cr|kɾ)uel \1u_el
+(cr|kɾ)i([ao]) \1i_\2
+#diablo di_ablo # not GL
+# diamante has both diphthong and hiatus forms in RAG dic recordings
+#diálog
+#\bdia([rɾ])i di_a\1i
+#\bdia([kc]) di_a\1 
+#([^g])üi \1u_í
+\bdi([aáu].*(?:\w*[aeiouáéíóúäëïöü]\w*){3,}) di_\1
+#die([cθ])io(ch|ʧ)o die\1i_o\2o
+fe(r{1,2})o([bv])ial fe\1o\2i_al
+# fiar
+\bfia fi_a
+#fianza
+fo([rɾ])tuito fo\1tu_ito
+#gorrión
+#gorrión gorri_ón
+\bg(u{,1})i([óo])n g\1i_\2n
+hiato hi_ato
+##(h{,1})uid \1u_id
+#huir hu_ir
+#io(ch|ʧ)o\b i_o\1o  
+([jx])esuit \1esu_it
+#\bmanio mani_o
+miasma mi_asma
+#piano
+p([rɾ])ior p\1i_or
+#\bri([ée])ndo ri_\1ndo
+santua([rɾ])io santu_a\1io
+\b([sS])i([oó])n \1i_on
+tia([rɾ])a ti_a\1a
+envi([aeio]) envi_\1
+embi([aeio]) embi_\1
+\bt([rɾ])i([aáe]) t\1i_\2
+t([ɾr])u(h{,1}[aá])n t\1u_\2n
+uos([oa]s*) u_os\1
+# aumentar, ouriños, aurícula: too faint in my opinion in RAG audios
+#(^[áéíóú]*[aeiou])([uea]m|[aie]t|[aeui]nt|ur)\b \1_\2
+([ck]ur*)i([ck])(.lum) \1í\2ulum
+([Dd])o(m).num \1ó\2inum
+abi([tm])u(rs) ábi\1u\2
+abi([tm])u(rs) ábi\1u\2
+ebi([tm])u(rs) ébi\1u\2
+bi([tm])u(rs) ébi\1u\2
+#\b([Rr])e([hui][^n]) \1e_\2
+#\b([Pp][rɾ])e([iuh]) \1e_\2
+\b([Tt][rɾ])a(n*)sh \1a\2s_h
+\b([dD])esh \1es_h
+#rr r_r
+#nh n_h
+\b([Pp])anh \1an_h
+\b([Ss])sinh \1in_h
+f([rl])ue f\1ue
+viax vi_ax
+foliada foli_ada
+# From M. García's syllabification tool
+^sial$ si_al
+^dial di_al
+^trial$ tri_al
+^marial$ mari_al
+^antial anti_al
+^afial afi_al
+ialdade i_aldade
+^mial mi_al
+# liorta etc.
+\b(lior) li_or

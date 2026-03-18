@@ -4,6 +4,7 @@ import kenlm
 import logging
 
 from normalization import normconfig as nc
+
 klm_logger = logging.getLogger("main.klm")
 
 

@@ -1,5 +1,6 @@
 #context	replacement	case_sensitivity
 # we're preceding comments with a space and hash sign
+#n’os	nós # more specific than following one. BAD, it's ambiguous
 \b([dmn])['‘’]\s*([oaóá]s?)\b	\1\2
 \b([d])['‘’]\s*([uú]n?s?)\b	\1\2
 \b([d])['‘’]\s*((?:[ei]st|aqu[ei]l)[ea]s?)\b	\1\2
@@ -17,6 +18,25 @@
 \b(q)['‘’]	\1ue  # needs one trailing space (plus the one to separate the comment from that trailing space) 
 \b(n)['‘’]\s*(u)	\1\2
 \b(n)['‘’]\s*	\1
+d’antr’ó	de antre o
+# The following default ones come from Gumper
+# In the end won't use cos for training corpus, the syllable gets destressed
+# c/o stress_info.atonas_gl. And "modernizing" this needs to be context-sensitive
+# e.g. ó -> ao mostly, but á maybe a or á  
+#\bâs\b	ás
+#\bôs\b	os
+#\bâ\b	á
+#\bô\b	o
+#\sô\b	so
+#\bá\b	a
+#'á\b	a
+#\bás\b	as
+#'ás\b	'as
+#\bó\b	o
+#'ó\b	o
+#\bós\b	os
+#'ós\b	'os
+# some apos
 \b([ae]ntr)['‘’](\W)	\1e\2
 \b(anqu)['‘’]	\1e
 \b(com)['‘’](\w)	\1o \2
@@ -26,8 +46,8 @@
 \by-(?!alma)	e 	cs # needs one trailing space on second column
 \b[YI](\s+)	E\1	cs
 \by(\s+)	e\1	cs
-\b([Ss])\.?\b	\1an
-# apos words
+\b([Ss])\.?\b	\1an # for 's. -> San', not ideal as a bit ambiguous
+# more apos words
 ch['‘’]os	chos
 ch['‘’]o	chos
 d['‘’]unha	dunha
@@ -35,11 +55,16 @@ d['‘’]es([eao]s?)	des\1
 pr['‘’](el(?:es)?)	pr\1
 pr['‘’](os?)	pr\1
 d['‘’]abondo	dabondo
-(^|\s|-)([dncl]?[oóôé]) ([mts])eu	\1\2 \3éu
-(^|\s|-|‘)([dncl]?[oóô]s) ([mts])eus	\1\2 \3éus
-(^|\s|-)((?:[dnl]|co)?[aá]) ([mts])iña	\1\2 \3íña
-(^|\s|-)((?:[dnl]|co)?[aá]s) ([mts])iñas	\1\2 \3íñas
-(^|\s|-)((?:[dnl]|co)?[oa]) ([nv])os([oa])	\1\2 \3ós\4
-(^|\s|-)((?:[dnl]|co)?[oa]s) ([nv])os([oa])s	\1\2 \3ós\4s
-(^|\s|-)([cl][oa]) ([nv])os([oa])	\1\2 \3ós\4
-(^|\s|-)([cl][oa]s) ([nv])os([oa])s	\1\2 \3ós\4s
+co’a	coa
+# for tagging preposed possessive as stressed
+(^|\s|-)([dncl]?[oóôé]) ([mts])eu	\1\2 \3éu	skip
+(^|\s|-|‘)([dncl]?[oóô]s) ([mts])eus	\1\2 \3éus	skip
+(^|\s|-)((?:[dnl]|co)?[aá]) ([mts])iña	\1\2 \3íña	skip
+(^|\s|-)((?:[dnl]|co)?[aá]s) ([mts])iñas	\1\2 \3íñas	skip
+(^|\s|-)((?:[dnl]|co)?[oa]) ([nv])os([oa])	\1\2 \3ós\4	skip
+(^|\s|-)((?:[dnl]|co)?[oa]s) ([nv])os([oa])s	\1\2 \3ós\4s	skip
+(^|\s|-)([cl][oa]) ([nv])os([oa])	\1\2 \3ós\4	skip
+(^|\s|-)([cl][oa]s) ([nv])os([oa])s	\1\2 \3ós\4s	skip
+#coa a	coa	skip
+#(^|\s|-)([oa]) ([nv])os([oa])\b	\1\2 \3ós\4	skip
+(^|\s|-)de seu\b	de séu	skip

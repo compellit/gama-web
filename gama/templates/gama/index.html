@@ -80,6 +80,7 @@
     <!-- Section Multi-file -->
     <h3 class="mb-3 mt-4">{% trans "Multi-file analysis" %} <small class="text-muted">{% trans "(ZIP upload)" %}</small></h3>
     <div id="bulk-error" class="alert alert-danger" style="display: none;"></div>
+    <div id="bulk-success" class="alert alert-success" style="display: none;"></div>
     <form id="bulk-form" action="{% url 'gama:analysis_bulk' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <p class="form-label">{% trans "Upload a .zip with .txt files. (max. 10 files of 4,500 characters each)" %}</p>
@@ -241,6 +242,7 @@
     const gif = document.getElementById('loading-gif-zip');
     // <div> pour afficher les erreurs
     const errorContainer = document.getElementById('bulk-error');
+    const successContainer = document.getElementById('bulk-success');
     // On écoute l'événement 'submit' du formulaire
     // L'utilisation de 'async' permet d'utiliser 'await' pour les appels asynchrones
     form.addEventListener('submit', async function(e) {
@@ -248,6 +250,10 @@
         // Masque l'erreur précédente
         errorContainer.style.display = 'none';
         errorContainer.innerText = '';
+        errorContainer.className = 'alert alert-danger';
+        successContainer.style.display = 'none';
+        successContainer.innerText = '';
+        successContainer.className = 'alert alert-success';
         // Affiche le GIF
         gif.style.display = 'block';
         // Scroll automatique vers le GIF
@@ -305,6 +311,8 @@
             a.click(); // Simule le clic, déclenchant le téléchargement
             a.remove(); // Supprime l'élément <a> du DOM
             window.URL.revokeObjectURL(url); // Libère la mémoire utilisée par l'URL temporaire
+            successContainer.innerText = '{% trans "ZIP analysis completed successfully. Your results download should start automatically." %}';
+            successContainer.style.display = 'block';
         } catch (error) {
             // Affiche l'erreur dans la bulle Bootstrap
             errorContainer.innerText = error.message;

@@ -5,15 +5,20 @@ from pathlib import Path
 # resources -------------------------------------
 
 config_dir = Path(__file__).parent
-#IVDICO = (config_dir.parent / "data" / "apertium-glg-expanded-uniq.txt.pkl").resolve()
+#IVDICO = Path("../data/apertium-glg-expanded-uniq.txt.gz").resolve()
+#IVDICO = (config_dir.parent / "data" / "apertium-glg-expanded-uniq.txt.gz").resolve()
 IVDICO = (config_dir.parent / "data" / "new_vocab_less_clitics.pkl").resolve()
+#IVDICO_ES = (config_dir.parent / "data" / "aspell-es-expanded.txt.gz").resolve()
 IVDICO_ES = (config_dir.parent / "data" / "aspell-es-expanded.txt.pkl").resolve()
-#LMPATH= config_dir.parent.parent.parent / "nlm/nos-127.klm.bin"
+#LMPATH= (config_dir.parent.parent / "nlm" / "nos-127.klm.bin").resolve()
 LMPATH= (config_dir.parent / "data" / "nos-127.klm.bin").resolve()
 LANGUAGES = ("gl", "es")
 
-# candidate generation --------------------------
 
+
+
+# candidate generation --------------------------
+ 
 # should no longer be needed to have a list for accented characters,
 # this was ok for python 2 (TweetNorm task) as they needed to be treated differently to the rest
 alphabet = ('bcdfghjklmnpqrstvwxyzaeiou', ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ', 'ç'])

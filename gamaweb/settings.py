@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # prev is for local with WSGI server, dev is with Django dev server
-ENV = 'prod'
+ENV = 'dev'
 assert ENV in ('prod', 'prev', 'dev')
 
 
