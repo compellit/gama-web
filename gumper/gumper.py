@@ -1,6 +1,5 @@
-"""
-This is Jumper by Guillermo Marco Remón (https://github.com/grmarco/jumper), with our modifications to the data to adapt to Galician.
-"""
+"""Jumper by Guillermo Marco, trying our modifications for Galician"""
+
 
 import math
 
@@ -64,9 +63,16 @@ vocales = vocales_no_acentuadas + vocales_acentuadas + dieresis
 vocales_y = vocales + ['y']
 #TODO can i add stressed falling ones here ói, éu etc. after "spanishfication" and see if improves?
 # it may, given that seems to do dempóis as dem-pó-is not dem-póis
-diptongos = ['ai', 'au', 'ei', 'eu', 'oi', 'ou', 'ui', 'iu', 'ia', 'ua', 'ie', 'ue', 'io', 'uo', 'ió', 'ey', 'oy', 'ié',
+diptongos = ['ai', 'au', 'ei', 'eu', 'oi', 'ou', 'óu', 'ui', 'iu', 'ia', 'ua', 'ie', 'ue', 'io', 'uo', 'ió', 'ey', 'oy', 'ié',
              'éi', 'ué', 'ái', 'iá', 'uá', 'oa', 'éu']
+
+diptongos_decrecientes = ['ai', 'au', 'ei', 'eu', 'oi', 'ou', 'óu', 'ui', 'iu', 'ey', 'oy', 'éi', 'ái', 'éu']
 # adding 'óu' as diphthong gave actually worse results, so didn't add for now
+# ao as diphthong worse results for metaplasms so didn't add
+triptongos = ['iai', 'iay', 'iei', 'iey', 'ioi', 'ioy', 'iui', 'iuy', 'iau', 'ieu', 'iou', 'uau', 'ueu', 'uiu', 'uou',
+              'uai', 'uay', 'uei', 'uey', 'uoi', 'uoy',
+              'iái', 'iáy', 'iéi', 'iéy', 'iói', 'ióy', 'iúi', 'iúy', 'iáu', 'iéu', 'ióu', 'uáu', 'uéu', 'uíu',
+              'uóu', 'uái', 'uáy', 'uéi', 'uéy', 'uói', 'uóy']
 
 # TODO maybe add cando donde here
 atonas_a_veces_acentuadas = {'oh': 'ó', 'quien': 'quién', 'do': 'dó'}
@@ -83,7 +89,7 @@ atonas = [
     'aun', 'excepto', 'hasta', 'incluso', 'don', 'doña', 'fray', 'frey', 'san', 'sor',
     'al', 'del', 'desde']
 
-atonas_gl = [
+atonas_gl = ['cal',
     # determinantes
     'o', 'a', 'os', 'as', 'do', 'da', 'dó', 'dá', 'dos', 'das',
     'co', 'ca', 'cos', 'coa', 'coas', 'cas', 'cá', 'cós', 'cás',
@@ -106,10 +112,10 @@ atonas_gl = [
     'llo', 'lle', 'lles',
     'á', 'ás'
     # preposiciones (used ## in some cases to avoid matching)
-    'a', 'ante', 'perante', 'até', 'deica', 'baixo',
+    'a', 'ante', 'perante', 'até', 'deica', 'baixo', 'cabo'
     'canda', 'cas', 'con', 'conforme', 'consonte',
     'contra', 'de', 'dende', 'desde', 'desd', 'en', 'entre',
-    'antre', 'entr', 'antr', "entr'a", "antr'a", 'hastra'
+    'antre', 'entr', 'antr', "entr'a", "antr'a", 'hastra',
     'excepto', '##agás', 'bardante', 'malia',
     'mediante', 'para', 'pra', 'prá', 'por', '##segundo',
     'sen', 'sin', '##senón', 'sobre', 'tras', 'xunta', 'onda',
@@ -118,16 +124,18 @@ atonas_gl = [
     # títulos
     "don", "dona", "fray", "sor", "san", "santa",
     # conjunciones
-    "coma", "anque",
+    "coma", "anque", "cada",
     "que", "como", "e", "logo", "mentres", 'mentras', "nin",
     "onde", "ou", "pero", "porque", "que", "se", "si", "cando", "y",
     "óu", # for "spanishfied" mode
     # posesivos (if preceded by a determiner, they are stressed, but this is handled in preprocessing)
     "meu", "meus", "miña", "miñas",
-    "teu", "teus",
-    "seu", "seus",
+    "teu", "teus", "ttúa",
+    "seu", "seus", "ssúa"
     "noso", "nosa", "nosos", "nosas",
-    "voso", "vosa", "vosos", "vosas"
+    "voso", "vosa", "vosos", "vosas",
+    "tan",
+    "ddonde"
 ]
 
 atonas = atonas_gl
@@ -182,6 +190,10 @@ def termina_por_vocal(palabra):
     return (palabra[-1] in vocales_y) or (palabra[-1] == 'h' and palabra[-2] in vocales_y)
 
 
+def diptongo_decreciente(palabra):
+    return (palabra[-2:] in diptongos_decrecientes) or (palabra[-1] == 'h' and palabra[-3:-2] in diptongos_decrecientes)
+
+
 def yeye(palabra):
     """Comprueba que la palabra que empieza por y griega no tiene un sonido vocálico. Se emplea para no hacer sinalefa
 
@@ -190,7 +202,7 @@ def yeye(palabra):
         Returns:
             bool: devuelve True si la y griega no es vocálica en esa palabra
     """
-    return (palabra[:2] in ['y' + vocal for vocal in vocales]) or (palabra[:3] == 'hie') or (palabra[:3] == 'hue') or (palabra[:3] == 'hon')
+    return (palabra[:2] in ['y' + vocal for vocal in vocales]) or (palabra[:2] in ['i' + vocal for vocal in vocales]) or (palabra[:3] == 'hie') or (palabra[:3] == 'hue')
 
 
 def palabra_silabas_acentos(palabra):
@@ -214,8 +226,15 @@ def palabra_silabas_acentos(palabra):
     for i, c in enumerate(palabra):
         if c in vocales:
             num_silabas += 1
-            if palabra[i - 1] + c in diptongos and not palabra[i - 1] in dieresis and num_silabas > 1:
-                num_silabas -= 1
+            cuatri = [letra in vocales for letra in palabra[i - 3:i + 1]] if len(palabra[:i + 1]) > 3 else [False]
+            if not all(cuatri):
+                if palabra[i - 1] + c in diptongos and not palabra[i - 1] in dieresis and num_silabas > 1:
+                    if palabra [i - 2] in vocales and len(palabra[:i + 1]) > 2:
+                        tri = palabra[i - 2:i + 1] if len(palabra[:i + 1]) > 2 else False
+                        if tri  in triptongos:
+                            num_silabas -= 1
+                    else:
+                        num_silabas -= 1
             # tilde
             if c in vocales_acentuadas:
                 acento = num_silabas
@@ -604,7 +623,7 @@ def verso_silabas_acentos_tipo(verso, arte=0, detectar_amb=0):
             # sinalefas
             if palabra_siguiente and termina_por_vocal(palabra) and empieza_por_vocal(
                     palabra_siguiente) and not en_hemistiquio(num_silabas, factor, arte) \
-                    and not yeye(palabra_siguiente):
+                    and not yeye(palabra_siguiente) and not diptongo_decreciente(palabra):
                 num_silabas -= 1
                 # anotamos dialefa 
                 if detectar_amb > 0:
@@ -766,3 +785,44 @@ def escandir_texto(texto):
             list: una lista con el análisis métrico de todos los versos
     """
     return escandir_lista_versos(texto.split('\n'))
+
+# texto = """
+# ¡Salve, ou Patria! fecunda Galicia,
+# xardín dos encantos, lumeira da Fe,
+# por teus héroes, da Hestoria delicia,
+# sobindo hastra os ceos túa groria se ve.
+# Rindamoslla a pátrea,
+# gallegos cantores,
+# de xustos loores
+# lumioso caudal;
+# co eco das harpas
+# renóvese a vida
+# na terra frorida
+# do nóso nadal.
+# Do téu folgo terribre e cantado
+# en tantas loitanzas de honor sin rival
+# sea norte ise victor cravado
+# de cor uruguaio , na beira inmortal.
+# """
+
+# # texto = """
+# # ¡Ai cántas veces, cántas, en noites pracenteiras,
+# # a suspirante brisa no mar m’arrendeou,
+# # cantando barcarolas con lindas compañeiras,
+# # e desde o ceo a lúa nas ondas bailadeiras
+# # os seus brilantes raios de prata esnaquizou!!
+# # Galicia da miñ’alma, o corazón ch’adora,
+# # cando na escura noite retrina o ruiseñol,
+# # cando entre nubes de ouro sourrindo esperta aurora,
+# # cando o choroso orballo das froles s’evapora,
+# # e cando tras os montes no mar se chanta o sol.
+# # ¡Adiós frondosos bosques! Adiós frolidos prados,
+# # onde en felices días corrín e rebuldei!...
+# # Serenas, claras rías, outeiros perfumados,
+# # collede os meus suspiros de bágoas salpicados
+# # ¡Lonxe de vós eu morro!! ¡Sin vós vivir non sei!
+# # """
+
+# scansion = escandir_texto(texto)
+# for x in scansion:
+#     print(x)
