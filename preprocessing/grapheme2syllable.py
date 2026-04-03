@@ -603,7 +603,7 @@ def syllabify_full(word: str, diacritic:str="´", exceptions:OrderedDict=None, s
             modif = False
             for exidx, (pat, rep) in enumerate(exceptions.items(), start=1):
                 wr = re.sub(pat, rep, wr)
-                if wr != wr_orig and not modif:
+                if wr != wr_orig and not modif and DBG:
                     print(f"Applied exception [{exidx}]:", pat, "->", rep, "on", wr_orig, "resulting in", wr)
                     modif = True
         # syllabification
