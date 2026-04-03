@@ -24,7 +24,7 @@ import logging
 import re
 import utils as ut
 
-DBG = True
+DBG = False
 
 g2s_logger = logging.getLogger("main.g2s")
 #g2s_logger.setLevel(logging.DEBUG)

@@ -520,6 +520,9 @@ if __name__ == "__main__":
     reload(normalizer)
     reload(sti)
     reload(ut)
+    
+    log_prod = True
+    log_level = logging.ERROR if log_prod else logging.DEBUG
 
     args = parse_args()
     input_file = args.input_file
@@ -530,11 +533,11 @@ if __name__ == "__main__":
     logger = logging.getLogger("main")
     logging.getLogger("stanza").setLevel(logging.ERROR)
     logger.handlers.clear()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(log_level)
     lfh = logging.FileHandler(Path(cf.log_dir) / cf.log_fn_template.format(batch_id=str.zfill(args.batch_id, 3), mode="w"))
     lch  = logging.StreamHandler(sys.stdout)
-    lfh.setLevel(logging.DEBUG)
-    lch.setLevel(logging.DEBUG)
+    lfh.setLevel(log_level)
+    lch.setLevel(log_level)
     log_format_file = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     log_format_console = logging.Formatter('%(message)s')
     lfh.setFormatter(log_format_file)
