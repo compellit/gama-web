@@ -13,7 +13,9 @@ More details in the app's *About* page: in [English](https://prf2.org/en/gama/ab
 
 ## Citation
 
-Moreau, Pauline & Ruiz Fabo, Pablo. (2025). GAMA web: Interface for the metrical analysis of Galician poetry. CiTIUS - Universidade de Santiago de Compostela.
+Moreau, Pauline, Alonso Pérez, A. & Ruiz Fabo, Pablo. (2025). GAMA web: Interface for the metrical analysis of Galician poetry. CiTIUS - Universidade de Santiago de Compostela.
+
+Ruiz Fabo, P., Moreau, P. & Alonso Pérez, A. (2026). Automatic Metrical Scansion of Galician Poetry: First Results. In _Proceedings of PROPOR 2026. The 17th International Conference on Computational Processing of Portuguese_.
 
 To cite the Jumper library (unrelated to our project, but that we used in our implementation):
 
