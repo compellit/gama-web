@@ -16,26 +16,27 @@
             <li>O patrón acentual excluíndo os acentos extrarrítmicos (que quedan fóra do patrón rítmico principal dun verso)</li>
         </ul>
         <p>GAMA fai parte do proxecto <a target="_blank" href="https://compellit.github.io/">COMPEL</a>.</p>
+        <p>Ademais da ferramenta accesíbel aquí, desenvolvemos modelos neuronais para escansión métrica, dispoñíbeis no <a href="https://huggingface.co/collections/compellit/scansion-models">perfil Hugging Face</a> do proxecto.</p>
     </div>
     <div>
         <h3>Funcionamento</h3>
-        <p>A análise métrica baséase na libraría <a target="_blank" href="https://github.com/grmarco/jumper">JUMPER</a> creada por Marco Remón &amp; Gonzalo (2021), que fornece escansión sen silabación previa. JUMPER está especializado no castelán e levamos a cabo algunhas modificacións para utilizar a libraría con textos en galego:</p>
+        <p>A análise métrica baséase na libraría <a target="_blank" href="https://github.com/grmarco/jumper">Jumper</a> creada por Marco Remón &amp; Gonzalo (2021), que fornece escansión sen silabación previa. Jumper está especializado no castelán e levamos a cabo algunhas modificacións para utilizar a libraría con textos en galego:</p>
         <ul>
             <li>A lista de ditongos e de palabras lexicamente átonas foi adaptada ao galego. Para isto consultamos traballos como Carballo Calero (1966) e Freixeiro Mato (2006).</li>
             <li>Un módulo de preprocesamento foi desenvolvido, que se aplica ao texto do poema orixinal antes da súa análise métrica. O preprocesamento ocúpase de dúas operacións:
                 <ul>
                     <li>Primeiro, aproxima a ortografía dos textos á ortografía do galego actual (seguindo a norma ILG/RAG); o preproceso foi probado con textos do século XIX. Este preproceso non é necesario para a análise métrica, mais ten utilidade para calquera análise ulterior, como etiquetaxe gramatical ou de dependencias usando un modelo adestrado para o galego contemporáneo.</li>
-                    <li>En segundo lugar, exclusivamente para a análise métrica con JUMPER, unha version do texto é creada na cal os acentos gráficos se aproximan ás convencións ortográficas do castelán. Isto axuda a JUMPER na escansión nos casos en que as convencións para o acento gráfico en galego non corresponden ás do castelán. O castelán contemporáneo conta con regras ortográficas moi explícitas para o acento gráfico que permiten coñecer as sílabas léxicas con acento prosódico de forma non ambigua, pero as convencións do galego presentan algo mais de ambigüidade.</li>
+                    <li>En segundo lugar, exclusivamente para a análise métrica con Jumper, unha version do texto é creada na cal os acentos gráficos se aproximan ás convencións ortográficas do castelán. Isto axuda a Jumper na escansión nos casos en que as convencións para o acento gráfico en galego non corresponden ás do castelán. O castelán contemporáneo conta con regras ortográficas moi explícitas para o acento gráfico que permiten coñecer as sílabas léxicas con acento prosódico de forma non ambigua, pero as convencións do galego presentan algo mais de ambigüidade.</li>
                 </ul>
         </ul>
-        <p>Cabe salientar que a libraría JUMPER é moi rápida, ao non estar baseada en etiquetaxe gramatical e ao non facer un preproceso do texto. A maior parte do tempo de cálculo que precisa GAMA débese ao noso propio preprocesamento do texto antes de envialo á análise métrica.</p>
+        <p>Cabe salientar que a libraría Jumper é moi rápida, ao non estar baseada en etiquetaxe gramatical e ao non facer un preproceso do texto. A maior parte do tempo de cálculo que precisa GAMA débese ao noso propio preprocesamento do texto antes de envialo á análise métrica.</p>
     </div>
     <div>
         <h3>Créditos</h3>
         <!-- ajout lien pour Pauline (LinkedIn ou autre profil) si Pauline d'accord -->
         <p>A aplicación está a ser desenvolvida por Pauline Moreau, <a target="_blank" href="https://citius.gal/team/anxo-alonso-perez/">Anxo Alonso Pérez</a> e <a target="_blank" href="https://citius.gal/gl/team/pablo-ruiz-fabo/">Pablo Ruiz Fabo</a> (IP).</p>
         <p>O código está en <a target="_blank" href="https://github.com/compellit/gama-web">GitHub</a></p>
-        <p>A análise métrica repousa sobre o algoritmo de JUMPER (v. supra).</p>
+        <p>A análise métrica repousa sobre o algoritmo de Jumper (v. supra).</p>
         <p>O vocabulario galego está baseado nunha combinación de termos dos dicionarios de <a target="_blank" href="https://github.com/citiususc/Linguakit">Linguakit</a> (Gamallo et al., 2018) e <a target="_blank" href="https://github.com/apertium/apertium-glg">Apertium</a> (Forcada & Tyers, 2016).</p>
         <p>Un modelo para normalización ortográfica contextual foi treinado con textos do corpus do <a target="_blank" href="https://nos.gal/es/proxecto-nos/recursos">proxecto Nós</a> (Gamallo et al., 2024).</p>
         <p>O traballo conta cun financiamiento da Unión Europea (<a target="_blank" href="https://cordis.europa.eu/project/id/101149659">101149659 MSCA-PF 2023)</a></p>

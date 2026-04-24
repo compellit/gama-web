@@ -16,27 +16,28 @@
             <li>The stress pattern excluding extrarhythmic stresses (i.e. those that lie outside the main rhythmic pattern for a line)</li>
         </ul>
         <p>GAMA is part of the <a target="_blank" href="https://compellit.github.io/">COMPEL</a> project.</p>
+        <p>Besides the tool available here, we developed neural models for scansion, available on the project's <a href="https://huggingface.co/collections/compellit/scansion-models">Hugging Face profile</a>.</p>
     </div>
     <div>
         <h3>How it works</h3>
-        <p>Metrical analysis is based on the <a target="_blank" href="https://github.com/grmarco/jumper">JUMPER</a> library by Marco Remón &amp; Gonzalo (2021). This tool performs metrical analysis without syllabification. However, JUMPER is specialized in Spanish. So that it can handle Galician, we carried out some modifications</p>
+        <p>Metrical analysis is based on the <a target="_blank" href="https://github.com/grmarco/jumper">Jumper</a> library by Marco Remón &amp; Gonzalo (2021). This tool performs metrical analysis without syllabification. However, Jumper is specialized in Spanish. So that it can handle Galician, we carried out some modifications</p>
         <ul>
-            <li>The diphthong list  and the list of lexically unstressed words was adapted to Galician. For this we consulted works like Carballo Calero (1966) and Freixeiro Mato (2006).</li>
+            <li>The diphthong list  and the list of lexically unstressed words was adapted to Galician. For this we consulted works like Carballo Calero (1966) and Freixeiro Mato (2006). Galician triphthong management was also added.</li>
             <li>A preprocessing module was developed, which handles input text before it is passed to the metrical analysis. This preprocessing does two things:
                 <ul>
                     <li>First, it renders historical spelling closer to current Galician (using the ILG/RAG norm). This is not required for scansion, but it could be useful for any downstream work with the text (e.g. part-of-speech tagging or dependency parsing with a model for current Galician)</li>
-                    <li>Second, for the purposes of scansion with JUMPER only, a version of the text where accent marks are closer to Spanish orthographic conventions is created. This helps JUMPER in cases where Galician orthographic stress conventions do not match Spanish ones; current Spanish has very explicit orthographic stress rules and, based on orthography, it is possible to unambiguously know which lexical syllables bear prosodic stress. Galician orthography is somewhat more ambiguous in this respect. </li>
+                    <li>Second, for the purposes of scansion with Jumper only, a version of the text where accent marks are closer to Spanish orthographic conventions is created. This helps Jumper in cases where Galician orthographic stress conventions do not match Spanish ones; current Spanish has very explicit orthographic stress rules and, based on orthography, it is possible to unambiguously know which lexical syllables bear prosodic stress. Galician orthography is somewhat more ambiguous in this respect. </li>
                     
                 </ul>
         </ul>
-        <p>Note that JUMPER is very fast (as it does not rely on part of speech tagging or any heavy preprocessing). Most of the processing time required by GAMA is due to our own preprocessing prior to scansion. </p>
+        <p>Note that Jumper is very fast (as it does not rely on part of speech tagging or any heavy preprocessing). Most of the processing time required by GAMA is due to our own preprocessing prior to scansion. </p>
     </div>
     <div>
         <h3>Credits</h3>
         <!-- ajout lien pour Pauline (LinkedIn ou autre profil) si Pauline d'accord -->
         <p>The developers are Pauline Moreau, <a target="_blank" href="https://citius.gal/team/anxo-alonso-perez/">Anxo Alonso Pérez</a> and <a target="_blank" href="https://citius.gal/team/pablo-ruiz-fabo/">Pablo Ruiz Fabo</a> (PI).</p>
         <p>Code is on <a target="_blank" href="https://github.com/compellit/gama-web">GitHub</a></p>
-        <p>Metrical analysis relies on JUMPER's algorithm, as described above.</p>
+        <p>Metrical analysis relies on Jumper's algorithm, as described above.</p>
         <p>The vocabulary for contemporary Galician is based on a combination of items from dictionaries in <a target="_blank" href="https://github.com/citiususc/Linguakit">Linguakit</a> (Gamallo et al., 2018) and <a target="_blank" href="https://github.com/apertium/apertium-glg">Apertium</a> (Forcada & Tyers, 2016).</p>
         <p>A model for contextual spelling normalization was trained with texts from the <a target="_blank" href="https://nos.gal/es/proxecto-nos/recursos">Nós project</a> corpus (Gamallo et al., 2024).</p>
         <p>The work is supported by the European Union (Grant ID <a target="_blank" href="https://cordis.europa.eu/project/id/101149659">101149659 MSCA-PF 2023</a>).</p>

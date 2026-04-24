@@ -9,33 +9,34 @@
     <div>
         <h2>À propos</h2>
         <h3>Introduction</h3>
-        <p>L'outil effectue une analyse métrique de poésie en galicien, et donne comme sortie:</p>
+        <p>L'outil effectue une analyse métrique de poésie en galicien, et donne comme sortie&nbsp;:</p>
         <ul>
             <li>Le nombre de syllabes métriques de chaque vers</li>
             <li>Le schéma accentuel formé par les positions des syllabes métriques accentuées</li>
             <li>Le schéma accentuel excluant les accents extrarythmiques (qui se trouvent en dehors du schéma rythmique principal d'un vers)</li>
         </ul>
         <p>GAMA fait partie du projet <a target="_blank" href="https://compellit.github.io/">COMPEL</a>.</p>
+        <p>En plus l'outil disponible ici, nous avons développé des modèles neuronaux pour l'analyse métrique, disponibles sur le <a href="https://huggingface.co/collections/compellit/scansion-models">profil Hugging Face</a> du projet.</p>
     </div>
     <div>
         <h3>Fonctionnement</h3>
-        <p>L'analyse métrique s'appuie sur la bibliothèque <a target="_blank" href="https://github.com/grmarco/jumper">JUMPER</a> créée par Marco Remón &amp; Gonzalo (2021), qui fournit une scansion sans syllabation préalable. JUMPER est spécialisé dans l'espagnol et nous avons apporté quelques modifications pour utiliser la bibliothèque avec des textes en galicien :</p>
+        <p>L'analyse métrique s'appuie sur la bibliothèque <a target="_blank" href="https://github.com/grmarco/jumper">Jumper</a> créée par Marco Remón &amp; Gonzalo (2021), qui fournit une scansion sans syllabation préalable. Jumper est spécialisé dans l'espagnol et nous avons apporté quelques modifications pour utiliser la bibliothèque avec des textes en galicien :</p>
         <ul>
-            <li>La liste des diphtongues et des mots lexicalement non accentués a été adaptée au galicien. Pour cela, nous avons consulté des travaux tels que Carballo Calero (1966) et Freixeiro Mato (2006).</li>
+            <li>La liste des diphtongues et des mots lexicalement non accentués a été adaptée au galicien. Pour cela, nous avons consulté des travaux tels que Carballo Calero (1966) et Freixeiro Mato (2006). La gestion des triphtongues en galicien a également été ajoutée.</li>
             <li>Un module de prétraitement a été développé, qui s'applique au texte original du poème avant son analyse métrique. Le prétraitement se charge de deux opérations :
                 <ul>
                     <li>Premièrement, il rapproche l'orthographe des textes de l'orthographe actuelle du galicien (selon la norme ILG/RAG)&nbsp;; le prétraitement a été testé sur des textes du XIXᵉ siècle. Ce pré-traitement n'est pas requis pour l'analyse métrique mais pourrait être utile pour toute analyse ultérieure, comme l'étiquetage grammatical ou en dépendances utilisant un modèle entraîné pour le galicien contemporain.</li>
-                    <li>Deuxièmement, exclusivement pour l'analyse métrique avec JUMPER, une version du texte est créée dans laquelle les accents graphiques sont rapprochés des conventions orthographiques de l'espagnol. Cela aide JUMPER dans la scansion dans les cas où les conventions d'accentuation graphique en galicien ne correspondent pas à celles de l'espagnol. L'espagnol contemporain dispose de règles orthographiques très explicites pour l'accentuation graphique, permettant d'identifier sans ambiguïté les syllabes lexicales avec accent prosodique, tandis que les conventions galiciennes présentent un peu plus d'ambiguïté.</li>
+                    <li>Deuxièmement, exclusivement pour l'analyse métrique avec Jumper, une version du texte est créée dans laquelle les accents graphiques sont rapprochés des conventions orthographiques de l'espagnol. Cela aide Jumper dans la scansion dans les cas où les conventions d'accentuation graphique en galicien ne correspondent pas à celles de l'espagnol. L'espagnol contemporain dispose de règles orthographiques très explicites pour l'accentuation graphique, permettant d'identifier sans ambiguïté les syllabes lexicales avec accent prosodique, tandis que les conventions galiciennes présentent un peu plus d'ambiguïté.</li>
                 </ul>
         </ul>
-        <p>Il est à noter que la librairie JUMPER est très rapide, ne demandant pas un étiquetage grammatical ni un pré-traitement lourd du texte. La plupart du temps de traitement demandé par GAMA se soit à notre propre pré-traitement avant d'envoyer le texte à l'analyse métrique. </p>
+        <p>Il est à noter que la librairie Jumper est très rapide, ne demandant pas un étiquetage grammatical ni un pré-traitement lourd du texte. La plupart du temps de traitement demandé par GAMA se soit à notre propre pré-traitement avant d'envoyer le texte à l'analyse métrique. </p>
     </div>
     <div>
         <h3>Crédits</h3>
         <!-- ajout lien pour Pauline (LinkedIn ou autre profil) si Pauline d'accord -->
         <p>L'application est en cours de développement par Pauline Moreau, <a target="_blank" href="https://citius.gal/team/anxo-alonso-perez/">Anxo Alonso Pérez</a>  et <a target="_blank" href="https://citius.gal/gl/team/pablo-ruiz-fabo/">Pablo Ruiz Fabo</a> (IP).</p>
         <p>Le code est sur <a target="_blank" href="https://github.com/compellit/gama-web">GitHub</a></p>
-        <p>L'analyse métrique repose sur l'algorithme de JUMPER (v. supra).</p>
+        <p>L'analyse métrique repose sur l'algorithme de Jumper (v. supra).</p>
         <p>Le vocabulaire pour le galicien est basé sur une combinaison de termres des dictionnaires de <a target="_blank" href="https://github.com/citiususc/Linguakit">Linguakit</a> (Gamallo et al., 2018) et <a target="_blank" href="https://github.com/apertium/apertium-glg">Apertium</a> (Forcada & Tyers, 2016).</p>
         <p>Un modèle de normalisation orthographique contextuelle a été entraîné avec des textes du corpus du <a target="_blank" href="https://nos.gal/es/proxecto-nos/recursos">projet Nós</a> (Gamallo et al., 2024).</p>
         <p>Le travail a été soutenu par l'Union européenne (<a target="_blank" href="https://cordis.europa.eu/project/id/101149659">101149659 MSCA-PF 2023)</a></p>
