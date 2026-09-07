@@ -151,7 +151,7 @@ MÓDULO DE ANALISIS DE PALABRA: COMPUTO DE SILABAS Y ACENTOS DE PALABRAS
 
 def quitar_puntuacion(texto):
     quitar = [':', ',', '.', ';', '.', '–', '(', ')', '\n', '\r', '¿', '?', '!', '¡', '—', '»', '”', '“', '«', '-','/', '/']
-    quitar += ["'", '‘', '’', '´', '`'] # added pr
+    quitar += ["'", '‘', '’', '´', '`', '…'] # added pr
     for q in quitar:
         texto = texto.replace(q, '')
     return texto
